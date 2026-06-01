@@ -1,0 +1,34 @@
+architecture: x86_64
+config:
+  boot.autostart: "true"
+  image.architecture: amd64
+  image.description: Ubuntu noble amd64 (20260518_07:42)
+  image.os: Ubuntu
+  image.release: noble
+  image.requirements.cgroup: v2
+  image.serial: "20260518_07:42"
+  image.type: squashfs
+  image.variant: default
+  volatile.base_image: 04126fcd5d50c8ad4ba018e632576db00434dc5dd52e4fe87d9b41e79fd7c4e5
+  volatile.cloud-init.instance-id: ae55d942-ba48-4eaf-9620-bf6dc3d65142
+  volatile.eth0.host_name: veth3090b528
+  volatile.eth0.hwaddr: 10:66:6a:01:ef:02
+  volatile.eth0.last_state.ip_addresses: 10.10.0.5
+  volatile.eth0.name: eth0
+  volatile.idmap.base: "0"
+  volatile.idmap.current: '[{"Isuid":true,"Isgid":false,"Hostid":1000000,"Nsid":0,"Maprange":1000000000},{"Isuid":false,"Isgid":true,"Hostid":1000000,"Nsid":0,"Maprange":1000000000}]'
+  volatile.idmap.next: '[{"Isuid":true,"Isgid":false,"Hostid":1000000,"Nsid":0,"Maprange":1000000000},{"Isuid":false,"Isgid":true,"Hostid":1000000,"Nsid":0,"Maprange":1000000000}]'
+  volatile.last_state.idmap: '[]'
+  volatile.last_state.power: RUNNING
+  volatile.uuid: 0e422871-6189-4577-bc8a-4d993481b99a
+  volatile.uuid.generation: 0e422871-6189-4577-bc8a-4d993481b99a
+devices:
+  eth0:
+    ipv4.address: 10.10.0.5
+    network: ovn-lab
+    type: nic
+ephemeral: false
+profiles:
+  - default
+stateful: false
+description: ""

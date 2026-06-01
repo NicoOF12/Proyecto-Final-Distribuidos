@@ -1,0 +1,13 @@
+---
+- name: Actualizar todos los nodos
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Actualizar cache APT
+      apt:
+        update_cache: yes
+
+    - name: Actualizar paquetes
+      apt:
+        upgrade: dist

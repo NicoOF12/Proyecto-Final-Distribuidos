@@ -1,0 +1,6 @@
+incus_instance.app_api
+incus_instance.app_core
+incus_instance.ceph_node
+incus_instance.db_postgres
+incus_instance.monitoring
+incus_instance.node_control

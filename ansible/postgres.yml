@@ -1,0 +1,55 @@
+---
+- name: Instalar y configurar PostgreSQL
+  hosts: db
+  become: true
+
+  vars:
+    postgres_db: appdb
+    postgres_user: appuser
+    postgres_password: app123
+
+  tasks:
+
+    - name: Instalar PostgreSQL
+      apt:
+        name:
+          - postgresql
+          - postgresql-contrib
+          - python3-psycopg2
+        state: present
+        update_cache: yes
+
+    - name: Habilitar PostgreSQL
+      service:
+        name: postgresql
+        enabled: yes
+        state: started
+
+    - name: Permitir conexiones remotas
+      lineinfile:
+        path: /etc/postgresql/16/main/postgresql.conf
+        regexp: '^#?listen_addresses'
+        line: "listen_addresses = '*'"
+
+    - name: Permitir red OVN
+      lineinfile:
+        path: /etc/postgresql/16/main/pg_hba.conf
+        line: "host    all             all             10.10.0.0/24            md5"
+
+    - name: Reiniciar PostgreSQL
+      service:
+        name: postgresql
+        state: restarted
+
+    - name: Crear base de datos
+      become_user: postgres
+      postgresql_db:
+        name: "{{ postgres_db }}"
+
+    - name: Crear usuario
+      become_user: postgres
+      postgresql_user:
+        name: "{{ postgres_user }}"
+        password: "{{ postgres_password }}"
+        priv: "ALL"
+        db: "{{ postgres_db }}"

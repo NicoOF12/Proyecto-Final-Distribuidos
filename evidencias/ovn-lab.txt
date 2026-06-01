@@ -1,0 +1,22 @@
+config:
+  bridge.mtu: "1500"
+  ipv4.address: 10.10.0.1/24
+  ipv4.nat: "true"
+  ipv6.address: none
+  network: incusbr0
+  volatile.network.ipv4.address: 192.168.250.2
+description: ""
+name: ovn-lab
+type: ovn
+used_by:
+  - /1.0/instances/app-api
+  - /1.0/instances/app-core
+  - /1.0/instances/ceph-node
+  - /1.0/instances/db-postgres
+  - /1.0/instances/monitoring
+  - /1.0/instances/node-control
+managed: true
+status: Created
+locations:
+  - none
+project: default
