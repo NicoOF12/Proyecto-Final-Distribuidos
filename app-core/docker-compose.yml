@@ -1,0 +1,11 @@
+services:
+  app-core:
+
+    build: .
+
+    container_name: app-core
+
+    restart: unless-stopped
+
+    ports:
+      - "8001:8001"
