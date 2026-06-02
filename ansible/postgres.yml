@@ -53,3 +53,23 @@
         password: "{{ postgres_password }}"
         priv: "ALL"
         db: "{{ postgres_db }}"
+
+    - name: Cambiar propietario del esquema public
+      become_user: postgres
+      shell: |
+        psql -d {{ postgres_db }} -c "ALTER SCHEMA public OWNER TO {{ postgres_user }};"
+
+    - name: Dar permisos al esquema public
+      become_user: postgres
+      shell: |
+        psql -d {{ postgres_db }} -c "GRANT ALL ON SCHEMA public TO {{ postgres_user }};"
+
+    - name: Dar permisos sobre tablas existentes
+      become_user: postgres
+      shell: |
+        psql -d {{ postgres_db }} -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO {{ postgres_user }};"
+
+    - name: Dar permisos sobre secuencias existentes
+      become_user: postgres
+      shell: |
+        psql -d {{ postgres_db }} -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO {{ postgres_user }};"
