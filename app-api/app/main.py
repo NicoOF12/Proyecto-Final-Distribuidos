@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
+from prometheus_fastapi_instrumentator import Instrumentator
 
 DATABASE_URL = "postgresql://appuser:app123@10.10.0.12:5432/appdb"
 
@@ -34,6 +35,7 @@ class ReservaCreate(BaseModel):
 
 app = FastAPI()
 
+Instrumentator().instrument(app).expose(app)
 
 @app.get("/")
 def root():
