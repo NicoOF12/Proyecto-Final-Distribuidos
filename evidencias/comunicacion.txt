@@ -1,0 +1,11 @@
+curl http://10.10.0.10:8000/validacion
+
+{
+  "resultado":"ok",
+  "mensaje":"Validación realizada por app-core"
+}
+
+
+docker logs app-core --tail 5
+
+INFO: 10.10.0.10 - "GET /validar HTTP/1.1" 200 OK
