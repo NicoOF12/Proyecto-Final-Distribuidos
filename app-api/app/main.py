@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 from prometheus_fastapi_instrumentator import Instrumentator
+import requests
 
 DATABASE_URL = "postgresql://appuser:app123@10.10.0.12:5432/appdb"
 
@@ -63,6 +64,15 @@ def listar_reservas():
 
     return resultado
 
+@app.get("/validacion")
+def validar_con_core():
+
+    respuesta = requests.get(
+        "http://10.10.0.11:8001/validar",
+        timeout=5
+    )
+
+    return respuesta.json()
 
 @app.post("/reservas")
 def crear_reserva(reserva: ReservaCreate):
