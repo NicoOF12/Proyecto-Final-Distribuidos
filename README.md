@@ -273,8 +273,9 @@ La carpeta `evidencias` contiene información de validación y pruebas realizada
 
 ## Autores
 
-Nicolás Orozco
-Oscar García
-Cristhian Alate
+Nicolás Orozco,
+Oscar García,
+Cristhian Alzate
 
 Ingeniería de Sistemas y Computación
+Universidad Tecnológica de Pereira
